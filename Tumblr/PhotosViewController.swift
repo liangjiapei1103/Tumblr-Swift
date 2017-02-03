@@ -12,6 +12,9 @@ import AFNetworking
 class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var posts: [NSDictionary] = []
+    var comments: [String] = []
+    
+    var blogTitle: String!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,8 +24,8 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
-
-        tableView.rowHeight = 240
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 400
         
         // Do any additional setup after loading the view.
         
@@ -37,6 +40,14 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     // print(responseDictionary)
                     let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
+                    
+                    print(responseFieldDictionary)
+                    
+                    self.blogTitle = responseFieldDictionary.value(forKeyPath: "blog.title") as! String
+                    
+                    print(self.blogTitle)
+                    
+                    self.navigationItem.title = self.blogTitle
                     
                     self.posts = responseFieldDictionary["posts"] as! [NSDictionary]
                     
@@ -68,14 +79,25 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let timestamp = post["timestamp"] as? String
         
+        if let summary = post["caption"] as? String {
+            
+            var attrStr = try! NSAttributedString(
+                data: summary.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+                options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                documentAttributes: nil)
+            
+            cell.captionLabel.text = attrStr.string
+            cell.captionLabel.sizeToFit()
+            
+        }
+        
+        
+        
         if let photos = post.value(forKey: "photos") as? [NSDictionary] {
             
             
             
             let imageUrlString = photos[0].value(forKeyPath: "original_size.url") as? String
-            
-            print(photos[0])
-            print(imageUrlString)
             
             if let imageUrl = URL(string: imageUrlString!) {
                 cell.photoImageView.setImageWith(imageUrl)
@@ -92,6 +114,22 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
         
     }
+    
+    private func stringFromHtml(string: String) -> NSAttributedString? {
+        do {
+            let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            if let d = data {
+                let str = try NSAttributedString(data: d,
+                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                                 documentAttributes: nil)
+                return str
+            }
+        } catch {
+        }
+        return nil
+    }
+
+    
 
     /*
     // MARK: - Navigation
