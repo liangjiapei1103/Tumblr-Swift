@@ -17,6 +17,7 @@ The following **additional** features are implemented:
 - [X] Made cell self sizing
 - [X] Added navigation controller
 - [X] set title of navigationItem to post's title
+- [X] Made imageView aspect fill
 
 
 ## Video Walkthrough
