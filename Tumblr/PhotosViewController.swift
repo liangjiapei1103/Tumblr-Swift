@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -21,6 +22,8 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
 
+        tableView.rowHeight = 240
+        
         // Do any additional setup after loading the view.
         
         let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")
@@ -32,13 +35,18 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let data = data {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
+                    // print(responseDictionary)
                     let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
                     
-                    let posts = responseDictionary["posts"] as! NSDictionary
+                    self.posts = responseFieldDictionary["posts"] as! [NSDictionary]
+                    
+                    self.tableView.reloadData()
                     
                 }
             }
         }
+        
+        task.resume()
         
     }
 
@@ -55,6 +63,29 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell") as! PhotoTableViewCell
+        
+        let post = posts[indexPath.row]
+        
+        let timestamp = post["timestamp"] as? String
+        
+        if let photos = post.value(forKey: "photos") as? [NSDictionary] {
+            
+            
+            
+            let imageUrlString = photos[0].value(forKeyPath: "original_size.url") as? String
+            
+            print(photos[0])
+            print(imageUrlString)
+            
+            if let imageUrl = URL(string: imageUrlString!) {
+                cell.photoImageView.setImageWith(imageUrl)
+            }
+            
+        } else {
+            
+        }
+        
+        
         
         
         
