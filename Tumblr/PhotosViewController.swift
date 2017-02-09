@@ -27,37 +27,17 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 400
         
+        // Initialize a UIRefreshControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
+        // add refresh control to table view
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        refreshControlAction(refreshControl)
+        
         // Do any additional setup after loading the view.
         
-        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")
-        let request = URLRequest(url: url!)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
         
-        let task : URLSessionDataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            
-            if let data = data {
-                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    
-                    // print(responseDictionary)
-                    let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
-                    
-                    print(responseFieldDictionary)
-                    
-                    self.blogTitle = responseFieldDictionary.value(forKeyPath: "blog.title") as! String
-                    
-                    print(self.blogTitle)
-                    
-                    self.navigationItem.title = self.blogTitle
-                    
-                    self.posts = responseFieldDictionary["posts"] as! [NSDictionary]
-                    
-                    self.tableView.reloadData()
-                    
-                }
-            }
-        }
-        
-        task.resume()
         
     }
 
@@ -127,6 +107,54 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
         }
         return nil
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! PhotoDetailsViewController
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+    }
+    
+    // Makes a network request to get updated data
+    // Updates the tableView with the new data
+    // Hides the RefreshControl
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        
+        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")
+        let request = URLRequest(url: url!)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
+        
+        let task : URLSessionDataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            if let data = data {
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    
+                    // print(responseDictionary)
+                    let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
+                    
+                    print(responseFieldDictionary)
+                    
+                    self.blogTitle = responseFieldDictionary.value(forKeyPath: "blog.title") as! String
+                    
+                    print(self.blogTitle)
+                    
+                    self.navigationItem.title = self.blogTitle
+                    
+                    self.posts = responseFieldDictionary["posts"] as! [NSDictionary]
+                    
+                    self.tableView.reloadData()
+                    
+                    // Tell the refreshControl to stop spinning
+                    refreshControl.endRefreshing()
+                    
+                }
+            }
+        }
+        
+        task.resume()
+        
     }
 
     

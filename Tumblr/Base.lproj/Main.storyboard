@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="353"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IPp-yA-LBE" id="pOw-BU-Qbs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="352"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="352.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LF7-Xj-18Q">
@@ -58,6 +58,7 @@
                                         <connections>
                                             <outlet property="captionLabel" destination="nXh-Ug-C12" id="lKk-Vw-Xvy"/>
                                             <outlet property="photoImageView" destination="LF7-Xj-18Q" id="Abz-bJ-nWK"/>
+                                            <segue destination="mOM-KF-uFQ" kind="show" id="m0g-Z9-KUx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -79,6 +80,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1000.8" y="37.331334332833585"/>
+        </scene>
+        <!--Photo Details View Controller-->
+        <scene sceneID="8Fb-5T-EWG">
+            <objects>
+                <viewController id="mOM-KF-uFQ" customClass="PhotoDetailsViewController" customModule="Tumblr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gTd-yI-cpq"/>
+                        <viewControllerLayoutGuide type="bottom" id="lmn-2z-WtF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R1t-WD-J11">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Duh-iX-NZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1732" y="37"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PNL-lr-7l7">
