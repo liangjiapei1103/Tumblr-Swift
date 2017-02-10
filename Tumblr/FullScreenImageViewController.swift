@@ -13,6 +13,13 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var photoImageView: UIImageView!
+
+    @IBOutlet weak var photoImageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var photoImageViewTrailingConstraint: NSLayoutConstraint!
+    
+    
+    
+    
     var post: NSDictionary!
     
     override func viewDidLoad() {
@@ -22,7 +29,9 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.delegate = self
         
-        scrollView.contentSize = CGSize(width: 375, height: 667)
+        scrollView.contentSize = view.bounds.size
+        
+        scrollView.isUserInteractionEnabled = true
         
         if let photos = post.value(forKey: "photos") as? [NSDictionary] {
             
@@ -48,7 +57,14 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return photoImageView
     }
-
+    
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        //photoImageViewTopConstraint.constant = 210;
+    }
+    
+    @IBAction func exitFullScreen(_ sender: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)    }
     /*
     // MARK: - Navigation
 

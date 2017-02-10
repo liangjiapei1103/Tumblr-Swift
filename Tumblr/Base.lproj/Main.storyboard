@@ -122,14 +122,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QXm-PI-XxF">
-                                <rect key="frame" x="15" y="79" width="50" height="50"/>
+                                <rect key="frame" x="15" y="35" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Ted-dc-hYW"/>
                                     <constraint firstAttribute="height" constant="50" id="kdf-Sw-4xF"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publish Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3Y-MR-xJQ">
-                                <rect key="frame" x="76" y="93.5" width="283" height="21"/>
+                                <rect key="frame" x="76" y="49.5" width="283" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="283" id="9O3-V6-ufE"/>
                                     <constraint firstAttribute="height" constant="21" id="dna-R0-Yj7"/>
@@ -139,7 +139,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wsc-97-jrk">
-                                <rect key="frame" x="0.0" y="144" width="375" height="259"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="259"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="259" id="ZTP-nX-SuK"/>
@@ -149,7 +149,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG2-Vk-KUC">
-                                <rect key="frame" x="15" y="418" width="345" height="20.5"/>
+                                <rect key="frame" x="15" y="374" width="345" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -174,7 +174,7 @@
                         <outlet property="photoImageView" destination="wsc-97-jrk" id="UfA-2H-Eqw"/>
                         <outlet property="publishDateLabel" destination="a3Y-MR-xJQ" id="rh9-rh-S9P"/>
                         <outlet property="summaryLabel" destination="uG2-Vk-KUC" id="UJG-5D-zxT"/>
-                        <segue destination="XLY-sk-m5J" kind="presentation" identifier="showImageInFullScreen" id="ZvK-3g-MDe"/>
+                        <segue destination="XLY-sk-m5J" kind="presentation" identifier="showImageInFullScreen" modalTransitionStyle="crossDissolve" id="ZvK-3g-MDe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Duh-iX-NZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,19 +201,20 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-cR-5lK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R5v-5x-pdq">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R5v-5x-pdq">
                                         <rect key="frame" x="0.0" y="210" width="375" height="247"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="247" id="jKO-r7-Dbq"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="R5v-5x-pdq" secondAttribute="trailing" id="TWL-oY-CdZ"/>
-                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerX" secondItem="xgb-cR-5lK" secondAttribute="centerX" id="URf-V9-SvV"/>
-                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="leading" secondItem="xgb-cR-5lK" secondAttribute="leading" id="gP8-TC-sU3"/>
-                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerY" secondItem="xgb-cR-5lK" secondAttribute="centerY" id="uvg-6w-ZpL"/>
+                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerY" secondItem="xgb-cR-5lK" secondAttribute="centerY" id="DnZ-m6-kZx"/>
+                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerX" secondItem="xgb-cR-5lK" secondAttribute="centerX" id="Rct-w6-jJE"/>
+                                    <constraint firstAttribute="trailing" secondItem="R5v-5x-pdq" secondAttribute="trailing" id="eX5-Fa-7sE"/>
+                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="leading" secondItem="xgb-cR-5lK" secondAttribute="leading" id="n7U-aB-b3W"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="CvT-FM-SIg" appends="YES" id="JZ1-TW-eIs"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -226,12 +227,19 @@
                     </view>
                     <connections>
                         <outlet property="photoImageView" destination="R5v-5x-pdq" id="uEZ-et-NR7"/>
+                        <outlet property="photoImageViewLeadingConstraint" destination="n7U-aB-b3W" id="e3k-Zj-j37"/>
+                        <outlet property="photoImageViewTrailingConstraint" destination="eX5-Fa-7sE" id="RJo-Z0-Zgv"/>
                         <outlet property="scrollView" destination="xgb-cR-5lK" id="Sfr-FN-8wW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INO-A4-0p2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="CvT-FM-SIg">
+                    <connections>
+                        <action selector="exitFullScreen:" destination="XLY-sk-m5J" id="SGq-td-Buh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2456.8000000000002" y="36.431784107946029"/>
+            <point key="canvasLocation" x="2748" y="36"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PNL-lr-7l7">
