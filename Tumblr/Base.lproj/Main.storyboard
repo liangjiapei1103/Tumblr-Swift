@@ -198,19 +198,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-cR-5lK">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" indicatorStyle="black" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-cR-5lK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R5v-5x-pdq">
-                                        <rect key="frame" x="0.0" y="210" width="375" height="247"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R5v-5x-pdq">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <gestureRecognizers/>
                                     </imageView>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerY" secondItem="xgb-cR-5lK" secondAttribute="centerY" id="DnZ-m6-kZx"/>
-                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerX" secondItem="xgb-cR-5lK" secondAttribute="centerX" id="Rct-w6-jJE"/>
-                                    <constraint firstAttribute="trailing" secondItem="R5v-5x-pdq" secondAttribute="trailing" id="eX5-Fa-7sE"/>
-                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="leading" secondItem="xgb-cR-5lK" secondAttribute="leading" id="n7U-aB-b3W"/>
+                                    <constraint firstAttribute="bottom" secondItem="R5v-5x-pdq" secondAttribute="bottom" id="6wr-4h-Xg0"/>
+                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="top" secondItem="xgb-cR-5lK" secondAttribute="top" id="S6q-cM-ibg"/>
+                                    <constraint firstAttribute="trailing" secondItem="R5v-5x-pdq" secondAttribute="trailing" id="dZ3-Te-8XH"/>
+                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="leading" secondItem="xgb-cR-5lK" secondAttribute="leading" id="iFH-JH-fBI"/>
+                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerX" secondItem="xgb-cR-5lK" secondAttribute="centerX" id="iWJ-hn-Dwl"/>
+                                    <constraint firstItem="R5v-5x-pdq" firstAttribute="centerY" secondItem="xgb-cR-5lK" secondAttribute="centerY" id="qhD-Yd-Ch0"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="CvT-FM-SIg" appends="YES" id="JZ1-TW-eIs"/>
@@ -219,16 +222,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="xgb-cR-5lK" firstAttribute="leading" secondItem="r8Q-ru-e1t" secondAttribute="leading" id="3pX-uN-UhI"/>
-                            <constraint firstAttribute="trailing" secondItem="xgb-cR-5lK" secondAttribute="trailing" id="QiP-OA-WQc"/>
-                            <constraint firstItem="xgb-cR-5lK" firstAttribute="top" secondItem="r8Q-ru-e1t" secondAttribute="top" id="uac-TV-E98"/>
-                            <constraint firstItem="FqH-Kb-XY4" firstAttribute="top" secondItem="xgb-cR-5lK" secondAttribute="bottom" id="xak-Fu-A7N"/>
+                            <constraint firstItem="FqH-Kb-XY4" firstAttribute="top" secondItem="xgb-cR-5lK" secondAttribute="bottom" id="4M5-2I-wLd"/>
+                            <constraint firstItem="xgb-cR-5lK" firstAttribute="top" secondItem="r8Q-ru-e1t" secondAttribute="top" id="ccr-iZ-TDp"/>
+                            <constraint firstItem="xgb-cR-5lK" firstAttribute="leading" secondItem="r8Q-ru-e1t" secondAttribute="leading" id="o3J-3Q-6Bq"/>
+                            <constraint firstAttribute="trailing" secondItem="xgb-cR-5lK" secondAttribute="trailing" id="zos-Ov-4ds"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="photoImageView" destination="R5v-5x-pdq" id="uEZ-et-NR7"/>
-                        <outlet property="photoImageViewLeadingConstraint" destination="n7U-aB-b3W" id="e3k-Zj-j37"/>
-                        <outlet property="photoImageViewTrailingConstraint" destination="eX5-Fa-7sE" id="RJo-Z0-Zgv"/>
                         <outlet property="scrollView" destination="xgb-cR-5lK" id="Sfr-FN-8wW"/>
                     </connections>
                 </viewController>
@@ -239,7 +240,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2748" y="36"/>
+            <point key="canvasLocation" x="2748" y="35.532233883058474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PNL-lr-7l7">

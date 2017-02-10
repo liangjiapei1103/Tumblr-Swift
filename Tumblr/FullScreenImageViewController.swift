@@ -29,7 +29,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.delegate = self
         
-        scrollView.contentSize = view.bounds.size
+        scrollView.contentSize = photoImageView.bounds.size
         
         scrollView.isUserInteractionEnabled = true
         
