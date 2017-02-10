@@ -9,15 +9,18 @@
 import UIKit
 import AFNetworking
 
-class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     var posts: [NSDictionary] = []
     var comments: [String] = []
     
     var blogTitle: String!
     
-    @IBOutlet weak var tableView: UITableView!
+    var isMoreDataLoading = false
+    var offset = 5
     
+    @IBOutlet weak var tableView: UITableView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +61,18 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let post = posts[indexPath.row]
         
         let timestamp = post["timestamp"] as? String
+        
+        
+        
+        cell.avatarImageView.setImageWith(URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/avatar")!)
+        
+        cell.avatarImageView.layer.cornerRadius = 25
+        cell.avatarImageView.clipsToBounds = true
+        
+        if let publishDate = post["date"] as? String {
+            cell.publishDateLabel.text = publishDate
+        }
+        
         
         if let summary = post["caption"] as? String {
             
@@ -113,7 +128,18 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let destination = segue.destination as! PhotoDetailsViewController
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
+            
+            let cell = sender as! PhotoTableViewCell
+            
+            let post = posts[indexPath.row]
+            
+            destination.post = post
+            
         }
+        
+        
+        
+        
         
     }
     
@@ -122,7 +148,7 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Hides the RefreshControl
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         
-        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")
+        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV&limit=5")
         let request = URLRequest(url: url!)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
         
@@ -157,6 +183,65 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
 
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if (!isMoreDataLoading) {
+            
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                
+                isMoreDataLoading = true
+                
+                // ... Code to load more results ...
+                loadMoreData()
+            }
+            
+        }
+        
+    }
+    
+    func loadMoreData() {
+        
+        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV&limit=5&offset=\(offset)")
+        let request = URLRequest(url: url!)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
+        
+        let task : URLSessionDataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            if let data = data {
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    
+                    // print(responseDictionary)
+                    let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
+                    
+                    if let posts = responseFieldDictionary["posts"] as? [NSDictionary] {
+                        for post in posts {
+                            self.posts.append(post)
+                        }
+                    }
+                    
+                    
+                    self.offset += 5
+                    
+                    // Update flag
+                    self.isMoreDataLoading = false
+
+                    
+                    self.tableView.reloadData()
+                    
+                }
+            }
+        }
+        
+        task.resume()
+        
+    }
     
 
     /*

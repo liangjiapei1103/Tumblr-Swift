@@ -14,6 +14,7 @@
 		53BA33F71E43F4BD00E65DFE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA33F61E43F4BD00E65DFE /* PhotosViewController.swift */; };
 		53BA33F91E43F85900E65DFE /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BA33F81E43F85900E65DFE /* PhotoTableViewCell.swift */; };
 		53DCC69C1E4D2E0B00BDC437 /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DCC69B1E4D2E0B00BDC437 /* PhotoDetailsViewController.swift */; };
+		53DCC69E1E4D48F000BDC437 /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DCC69D1E4D48F000BDC437 /* FullScreenImageViewController.swift */; };
 		F742B726FCBCA3F6A10183A9 /* Pods_Tumblr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D163B375D88028B791B8A5 /* Pods_Tumblr.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		53BA33F61E43F4BD00E65DFE /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		53BA33F81E43F85900E65DFE /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		53DCC69B1E4D2E0B00BDC437 /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
+		53DCC69D1E4D48F000BDC437 /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		A2D163B375D88028B791B8A5 /* Pods_Tumblr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tumblr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				53BA33F61E43F4BD00E65DFE /* PhotosViewController.swift */,
 				53BA33F81E43F85900E65DFE /* PhotoTableViewCell.swift */,
 				53DCC69B1E4D2E0B00BDC437 /* PhotoDetailsViewController.swift */,
+				53DCC69D1E4D48F000BDC437 /* FullScreenImageViewController.swift */,
 			);
 			path = Tumblr;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				53DCC69C1E4D2E0B00BDC437 /* PhotoDetailsViewController.swift in Sources */,
 				53BA33E51E43F1C000E65DFE /* AppDelegate.swift in Sources */,
+				53DCC69E1E4D48F000BDC437 /* FullScreenImageViewController.swift in Sources */,
 				53BA33F71E43F4BD00E65DFE /* PhotosViewController.swift in Sources */,
 				53BA33F91E43F85900E65DFE /* PhotoTableViewCell.swift in Sources */,
 			);
@@ -287,7 +291,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -330,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
