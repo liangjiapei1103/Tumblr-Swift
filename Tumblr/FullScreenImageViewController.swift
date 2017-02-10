@@ -33,6 +33,8 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.isUserInteractionEnabled = true
         
+        scrollView.zoomScale = 1.001
+        
         if let photos = post.value(forKey: "photos") as? [NSDictionary] {
             
             
@@ -64,7 +66,14 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func exitFullScreen(_ sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)    }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
