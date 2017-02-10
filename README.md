@@ -68,7 +68,8 @@ The following **additional** features are implemented:
 - [X] Added Avatar and publish date
 - [X] Present Image in full screen modally
 - [X] Zooming image in full screen
-- [X] Dismiss full screen image by tapping the screen
+- [X] Dismiss full screen image by tapping the
+- [X] Dismiss full screen image by dragging the image
 
 
 ## Video Walkthrough
